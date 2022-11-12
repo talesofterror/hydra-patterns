@@ -1,0 +1,5 @@
+
+PASTE INTO ADDRESS BAR: 
+chrome://flags/#enable-web-midi
+
+made a pattern with a hand drawn tiling image, then figured out how to control parameters with a MIDI Controller

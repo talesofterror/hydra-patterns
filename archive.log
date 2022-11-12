@@ -1,0 +1,139 @@
+commit 9d5ff2efcadf4e2822eedeea9e7cda8b519696d8
+Author: mike <mich.rivera84@gmail.com>
+Date:   Mon Nov 7 01:22:19 2022 -0500
+
+    made some housekeeping changes, including putting all my first patterns into the .archive directory. I want to make folders for each pattern to make organization and portability smoother. The main director could maybe have files containing useful functions and notes
+
+commit 65d9f00fb5dec3b41cd191ba50657b0a760f34d6
+Author: mike <mich.rivera84@gmail.com>
+Date:   Sun Aug 21 19:34:42 2022 -0400
+
+    meditating monk pattern
+
+commit 730dedca5417d4889f3ba056820bd401c384836d
+Author: mike <mich.rivera84@gmail.com>
+Date:   Mon Jul 18 03:13:58 2022 -0400
+
+    tweaking and playing
+
+commit 537274f738e3524d6d734119624e34af2cb1cf11
+Author: mike <mich.rivera84@gmail.com>
+Date:   Sun Jul 17 03:39:34 2022 -0400
+
+    made a pattern with a hand drawn tiling image, then figured out how to control parameters with a MIDI Controller
+
+commit 1bd69edf53e3725548b6f566103822c364680d3c
+Author: mike <mich.rivera84@gmail.com>
+Date:   Sat Apr 30 00:00:49 2022 -0400
+
+    I think I'm done
+
+commit f1b1088416a2cc9b3c6f67c019858f6f932de686
+Author: mike <mich.rivera84@gmail.com>
+Date:   Thu Apr 28 22:47:15 2022 -0400
+
+    pointless tweaking at this point maybe
+
+commit 5c1fa724376cafe18cf99d882c316b1f3af65338
+Author: mike <mich.rivera84@gmail.com>
+Date:   Wed Apr 27 23:58:05 2022 -0400
+
+    more pattern8
+
+commit 9113ed1dc394364bb37f9eae54062d6502663c7c
+Merge: 16c959b 9514341
+Author: talesofterror <mich.rivera84@gmail.com>
+Date:   Mon Apr 25 00:22:56 2022 -0400
+
+    pattern8 continued
+
+commit 16c959bca80cc3c364bd9da3c2f51196c062febc
+Author: talesofterror <mich.rivera84@gmail.com>
+Date:   Mon Apr 25 00:20:16 2022 -0400
+
+    pattern 8 continued
+
+commit 951434165dd47940a29445c7f290d5ab875eb30e
+Author: mike <mich.rivera84@gmail.com>
+Date:   Sun Apr 24 13:14:42 2022 -0400
+
+    pattern8
+
+commit d39ec294a6decd7e5919d541319460efab4f6001
+Author: mike <mich.rivera84@gmail.com>
+Date:   Sun Feb 27 01:18:04 2022 -0500
+
+    more tsukiko
+
+commit d3545b6b7f0d81f1ce241f5b6f6af8e92eb97c98
+Author: mike <mich.rivera84@gmail.com>
+Date:   Fri Feb 25 22:49:57 2022 -0500
+
+    added tsukiko
+
+commit 140e3fb07c66adba2fc69f3c410b534074711fbc
+Author: mike <mich.rivera84@gmail.com>
+Date:   Tue Feb 22 21:19:02 2022 -0500
+
+    corngal
+
+commit 554321811689b064f3c422b2a0eb8a7b612cb360
+Author: mike <mich.rivera84@gmail.com>
+Date:   Mon Feb 21 21:21:54 2022 -0500
+
+    added pattern6
+
+commit 644ff61bad17e653890d85929f5d261a173824b8
+Author: mike <mich.rivera84@gmail.com>
+Date:   Wed Feb 16 09:15:11 2022 -0500
+
+    deleting large files
+
+commit 77f91037abfd596245e500a5c35fac94e297ec8b
+Author: mike <mich.rivera84@gmail.com>
+Date:   Wed Feb 16 09:12:47 2022 -0500
+
+    created pattern4, which is mario having an orgasm over and over and over and over and
+
+commit 0641bc6b242ea975b5bef053928a04e8ea05f1ba
+Author: talesofterror <mich.rivera84@gmail.com>
+Date:   Tue Dec 28 23:55:34 2021 -0500
+
+    pull test
+
+commit 61f9f375404820c396ea35ccb2b4efd2f3013972
+Author: mike <mich.rivera84@gmail.com>
+Date:   Thu Dec 23 00:21:40 2021 -0500
+
+    don't be afraid to let your body die
+
+commit 3e07759d3ad74a56a3870ed53c321c92c4e8ae7a
+Merge: 32696de c6c9253
+Author: mike <mich.rivera84@gmail.com>
+Date:   Tue Dec 21 22:40:45 2021 -0500
+
+    Merge branch 'main' of github.com:talesofterror/hydra-pattern1
+
+commit 32696de5e34a251586630bacf02621157eb87f53
+Author: mike <mich.rivera84@gmail.com>
+Date:   Mon Dec 20 04:11:14 2021 -0500
+
+    stayed up too late
+
+commit c6c9253572ca3d77c3354dedb25c6445c7913758
+Author: salieri <65364064+talesofterror@users.noreply.github.com>
+Date:   Thu Dec 16 23:47:40 2021 -0500
+
+    Create README.md
+
+commit f7cc2979bdf2ea88990193b36bca422f2755583d
+Author: mike <mich.rivera84@gmail.com>
+Date:   Thu Dec 16 23:41:22 2021 -0500
+
+    figured  some stuff out after only a couple hundred deadends
+
+commit 95581166c6800abef4a7f2ddfb7b4dee1bdd4c65
+Author: mike <mich.rivera84@gmail.com>
+Date:   Wed Dec 15 13:12:16 2021 -0500
+
+    got it working
