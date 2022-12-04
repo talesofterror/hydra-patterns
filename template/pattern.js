@@ -8,11 +8,12 @@ var hydra = new Hydra({
 // s0.initImage()
 // s0.initCam()
 
+let red = () => src(o0).color(1,0,0)
+let green = () => src(o0).color(0,1,0)
+let blue = () => src(o0).color(0,0,1)
+
 var sine = () => Math.sin(1 / time * 1) + 1;
 let random = () => Math.random();
-
-var kVal = () => Math.sin(time / -1 * -1) * 0.5 + 1;
-let nkVal = () => -1 * (Math.sin(time / -1 * -1) * 0.5 +1);
 
 var t = () => time;
 
