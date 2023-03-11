@@ -6,7 +6,10 @@ var hydra = new Hydra({
 // s0.initScreen()
 // s0.initVideo() 
 // s0.initImage()
-// s0.initCam()
+
+/* use cam() function with parenthesis */
+// s3.initCam()
+//  let cam = () => src(s3)
 
 let red = () => src(o0).color(1,0,0)
 let green = () => src(o0).color(0,1,0)
