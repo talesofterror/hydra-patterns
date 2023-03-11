@@ -5,9 +5,9 @@ var hydra = new Hydra({
 
 // s0.initScreen()
 // s0.initVideo() 
-// s0.initImage()
-s3.initCam()
-let cam = () => src(s3)
+s0.initImage("directory.png");
+// s3.initCam()
+// let cam = () => src(s3)
 
 
 let red = (i) => src(i).color(1,0,0)
