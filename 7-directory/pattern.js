@@ -37,6 +37,8 @@ let gridSize = 300 // 120 through 160 are weird. 150 is null
 let gridTime = 0.1 
 let threshVal = 0.010
 
+let gridOsc1 = () => Math.abs(-0.01 * Math.sin(time * 0.5) + 0);
+let gridOsc2 = () => Math.abs(0.1 * Math.sin(time * 0.5) + -1.57);
 let grid = () => 
 osc(gridSize, gridTime, 0).thresh(threshVal - 0.005).rotate(sine1)
   .mult(osc(gridSize-150, gridTime, 0).thresh(threshVal).rotate(sine2))
