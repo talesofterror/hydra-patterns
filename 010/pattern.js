@@ -1,7 +1,8 @@
 var hydra = new Hydra({
     canvas: document.getElementById("myCanvas"),
-    detectAudio: false                                                                                                                                                    
+    detectAudio: false
   });
+
 // s0.initScreen()
 // s0.initVideo() 
 // s0.initImage()
@@ -14,9 +15,10 @@ let red = () => cam().color(1,0,0)
 let green = () => cam().color(0,1,0)
 let blue = () => cam().color(0,0,1)
 
-var sine = () => Math.abs(0.5 * Math.sin(time * 0.1) + 0.2);
-var sine2 = () => 0.011 * Math.sin(time * 0.5) + 0.09;
-var sine3 = () => 0.02 * Math.sin(time * 0.2) + 0.2;
+var sine = () => Math.sin(time * .1) + 0
+var sineNeg = () => Math.sin(time * -.1) + 0
+var sineAbs = () => Math.abs(sine())
+var sineAbsNeg = () => Math.abs(-sine())
 let random = () => Math.random();
 
 var t = () => time;
@@ -62,43 +64,26 @@ let rgbFuzzerMod = () =>
   .modulate(src(o1), 0.04) // source feedback // modulation btw 0.01 and 0.09
   .modulate(scramble1(), 0.01) // source feedback? // modulation btw 0.01 and 0.09
 
-red()
-  .thresh(0.02)
-  .invert()
-  .color(1, 0, 0)
-  .modulate(o0)
-  .diff(o0, 0.002)
-  
+cam()
+.add(red(), sine)
+.add(green(), sineNeg)
+.add(green(), sineAbsNeg)
+.thresh(0.1)
+.diff(o1)
+.layer(cam().luma(10 ))
 .out(o0);
 
-green()
-  .thresh(0.1, 0.1)
-  .color(0, 1, 0)
-  .sub(o1, 0.01)
-    .invert()
-    .modulate(noise(0.2, 0.005), sine3)
-  .mult(grid().kaleid([20, 3, 50, 10, 0, 100].fast(10, 0.2)).colorama(0.5))
-  .diff(grid().kaleid([20, 3, 50, 10, 0, 100].fast(10, 0.2)).colorama(0.5))
-.out(o1);
-
-blue()
-  .invert()
-  // .color(0, 0, 1)
-  .add(o2, 0.01)
-.out(o2);
-
 cam()
-  .sub(o0, 2)
-  .add(o1)
-  .diff(o2)
-  .layer(src(o0).thresh(0.2).luma(0.2))
-    .mult(o2, 0.2)
-    // .colorama(0.7)
-  .sub(src(o1).thresh(0.4), sine)
-  .layer(cam().luma(0.7, 0.1))
-.out(o3);
+.sub(green(), 0.7)
+.sub(blue(), 0.9)
+.add(red())
+.thresh(0.01)
+.sub(blue())
+.sub(green())
+.invert()
+.out(o1)
 
-render(o3);
+render(o0);
 
-setResolution(2560,1440)
+setResolution(1920,1080)
 
