@@ -21,11 +21,13 @@ let blue = (source) => src(source).color(0,0,1)
 let sineSpeed = 0.016
 let sineSpeedD10 = sineSpeed / 10
 let sineSpeedM10 = sineSpeed * 10
+let hopSpeed = 1000
 var sine = () => 1 * Math.sin(time * sineSpeed) + 1;
 var sineAbs = () => Math.abs(1 * Math.sin(time * sineSpeed) + 1);
 var sineAbs2 = () => Math.abs(1 * Math.sin(time * -sineSpeed) + 1);
 var sineAbsD10 = () => Math.abs(1 * Math.sin(time * sineSpeedD10) + 1);
 var sineAbsM10 = () => Math.abs(1 * Math.sin(time * sineSpeedM10) + 0);
+var sineAbsHop = () => Math.abs(0.3 * Math.sin(time * hopSpeed) - 0.2);
 let random = () => Math.random();
 
 var t = () => time;
@@ -76,44 +78,70 @@ let frosting = () =>
   .diff(src(s1).scale(0.2))
   .diff(s2)
   .sub(src(o0).thresh(0.4))
-  .modulate(src(s0), sine)
+  .modulate(src(s0), sineAbs)
   .diff(src(s0), sineAbs)
 
-let candyRotation = 1.9
+let shapeRadiation = () => 
+  osc(500, -0.002, 0)
+  .kaleid(2)
+  .add(shape(8, 0.2, 0.5))
+  .diff(shape(6, 0.3, 0.5))
+  .scroll(0, 0.14)
+  .pixelate(100, 100)
+
+let candyRotation = 0
+// let candyRotation = sineAbsM10()
 let candy = () => 
   src(s0)
   .diff(s1)
   .mult(s2)
-  .layer(src(s0).luma(sine, 1.2)
+  .layer(src(s0).luma(sineAbs, 1.2)
   )
-  .diff(osc(50, 0.02, sine).rotate(candyRotation))  
+  .diff(osc(50, -0.0, sineAbs).rotate(candyRotation)
+  .modulate(osc(5, 0.02, 0).rotate(0))
+  .kaleid(100)
+  .scroll(0, 0.14)
+  .modulate(shapeRadiation(), 0.02)
+  )  
 
 let cityThresh = () => 
   src(s0)
-  .thresh(0.3)  
+  .thresh(0.45)  
 
 let candyBlue = () => 
   cityThresh()
   .add(candy())
   .sub(frosting())
-  .add(s0, sine)
+  .add(s0, sineAbs)
   .add(o0, sineAbs2)
-  .mult(src(s0).invert(), sineAbsD10)
+  // .mult(src(s0).invert(), sineAbsD10)
   .sub(src(o0))
 
 // osc(1, 0, 1).diff((grid()))
 candyBlue()
-  .diff(src(o1), sineAbsM10)
-  .mult(osc(1500, 0.02, sine).rotate(1.6), sineAbsM10)
+  .mult(osc(1500, 0.02, sineAbs).rotate(1.6), sineAbsHop)
 .out(o0)
 
 candyBlue()
-  .pixelate(854, 480)
-  .mult(src(s2))
+  .invert()
 .out(o1)
 
+src(o0)
+  .mult(cityThresh().invert())
+  .add(s0)
+  .mult(s1)
+  .add(s2)
+  // .sub(green(o3), 1)
+  .sub(frosting())
+.out(o2)
 
-render();
+shapeRadiation()
+  .sub(blue(o3), 1)
+  .sub(green(o3), 1)
+  .layer(red(s0).luma(0.02, 0.02), 0.5)
+.out(o3)
+
+render(o2);
 
 setResolution(1920,1080)
 
