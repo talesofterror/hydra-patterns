@@ -131,13 +131,15 @@ src(s0)
   .diff(s1)
   .add(src(s2))
   .mult(s0)
-  .add(o3) // WINDOWS
+  .mult(o3, 0.03) // WINDOWS
   .modulate(redCityStripes(), sineAbs)
   .mult(o1, sineAbs)
   .modulate(osc(10, 0.04, 0).rotate(1.6), 0.002)
-  .scrollX(sineAbs, - 0.01)
-  .add(o1)
+  .scrollX(sineAbs, -0.01)
+  .add(o1, 0.8)
+  // .mult(src(o2).invert(), sineAbsM10)
   .modulate(src(o0).invert(), sineAbs)
+  .sub(o2, 0.01)
 .out(o0)
 
 src(s1)
@@ -156,6 +158,6 @@ green(s0)
   .sub(shape(4, 1).scale(0.5, 1).scrollY(0.2))
 .out(o3)
 
-render();
+render(o0);
 
 setResolution(1920,1080)
