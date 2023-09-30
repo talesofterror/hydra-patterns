@@ -16,6 +16,7 @@ let green = () => cam().color(0,1,0)
 let blue = () => cam().color(0,0,1)
 
 var sine = () => Math.sin(time * .1) + 0
+var sine2 = () => Math.sin(time * .08) + 1.3
 var sineNeg = () => Math.sin(time * -.1) + 0
 var sineAbs = () => Math.abs(sine())
 var sineAbsNeg = () => Math.abs(-sine())
@@ -24,6 +25,16 @@ let random = () => Math.random();
 var t = () => time;
 
 var speed = 20;
+
+let layerValue = () => 0
+let toggle = () => true;
+document.addEventListener("click", () => {
+  if (toggle) {
+    layerValue = () => 1
+  } else {layerValue = () => 0}
+  toggle = !toggle
+  console.log(toggle)
+})
 
 // GRID
 let gridSize = 400 // 120 through 160 are weird. 150 is null // below 100 needs height adjustment
@@ -69,8 +80,11 @@ cam()
 .add(green(), sineNeg)
 .add(green(), sineAbsNeg)
 .thresh(0.1)
-.diff(o1)
-.layer(cam().luma(10 ))
+// .diff(o1, sine2)
+.diff(o1, sine)
+.diff(o1, layerValue)
+.layer(cam().luma(sine2))
+.layer(o1)
 .out(o0);
 
 cam()
