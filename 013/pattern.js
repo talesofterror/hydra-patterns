@@ -70,25 +70,19 @@ let darkenedGirl = () =>
   src(s1).mult(s1).thresh(0.1)
 
 let noise1 = () => 
-  noise(sine3, 0.01)
-  .thresh(0.01)
+  noise(800, 0.01)
+  // .thresh(0.01)
   // .scrollX(0.01, 0.005)
 
 src(s0).thresh(0.2)
-  .layer(noise1()
-    .invert().add(darkenedGirl().add(noise1(), 0.2))
-    .luma(0.2).colorama(sine2))
-  .sub(o0)
-  .sub(src(o1).invert().luma(0.8), sine2)
+  .modulate(o1, sine2)
 .out(o0)
 
 noise1()
-  .modulate(osc(100).modulate(s0), sine2)
-  .add(src(s0))
-  .sub(noise1())
+
 .out(o1)
 
-render(o0);
+render();
 
 setResolution(1920,1080)
 
