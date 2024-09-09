@@ -15,7 +15,7 @@ let red = () => src(o0).color(1, 0, 0)
 let green = () => src(o0).color(0, 1, 0)
 let blue = () => src(o0).color(0, 0, 1)
 
-var sine = () => Math.sin(1 / time * 1) + 1;
+var sine = () => 1.2 * Math.sin(1 / time * 1) + 2;
 let random = () => Math.random();
 
 var t = () => time;
@@ -42,7 +42,7 @@ let modGrid = () =>
 
 // SCRAMBLE
 // Works best within diff()
-var scramblePixOsc = () => 10 * Math.sin(time * 0.5) + 1000;
+var scramblePixOsc = () => 1 * Math.sin(time * 0.5) + 1;
 var scrambleScrollYOsc = () => 0.05 * Math.sin(time * 0.1) + 1;
 var scrambleScrollXOsc = () => 10 * Math.sin(time * 0.5) + 1000;
 let scramble1 = () =>
@@ -72,8 +72,9 @@ let frameShape = () =>
   shape(4, 0.869, 0.001).scale(1, 0.734, 1.44)
     .modulate(osc(10, 0.02, 1).rotate(1.6))
 
+
 let frameWave1 = () =>
-  shape(4, 0.869, 0.001).scale(1, 0.834, 1.44)
+  shape(4, 0.869, 0.001).scale(1, 1.94, 1.44)
     .modulate(osc(10, 0.02, 1).rotate(1.6))
 
 let frameCut1 = () =>
@@ -81,7 +82,7 @@ let frameCut1 = () =>
     .modulate(osc(10, 0.02, 1).rotate(1.6))
 
 let frameWave2 = () =>
-  shape(4, 0.869, 0.001).scale(1, 0.934, 1.44)
+  shape(4, 0.869, 0.001).scale(1, 0.634, 1.44)
     .modulate(osc(10, 0.02, 1).rotate(1.6))
 
 let frameCut2 = () =>
@@ -89,7 +90,7 @@ let frameCut2 = () =>
     .modulate(osc(10, 0.02, 1).rotate(1.6))
 
 let mainWave = () =>
-  osc(10, 0.02, 1)
+  osc(10, 0.02, 10)
     .modulate(
       osc(10, 0.02, 5).rotate(1.6)
     ).rotate(1.6)
@@ -108,6 +109,7 @@ let bgThresh = () =>
   flowers().invert().thresh(0.6)
     .mult(mainWave())
     .mult(frameShape())
+// 
 
 let outerWave = () =>
   mainWave().rotate(3.14)
@@ -115,31 +117,51 @@ let outerWave = () =>
 
 flowers()
   .mult(scanlines())
+  .modulate(o2, sine)
   .diff(mainWave())
   .diff(flowerThresh())
   .mult(frameShape())
   .diff(bgThresh(), 0.2)
   .add(outerWave(), 0.5)
-  // .sub(frameShape())
-  // .mult(o1)
+  .mult(frameWave2())
+  .add(o3)
   .out(o0);
 
-frameWave1()
-  .sub(frameCut1()).invert()
-  .mult(o2)
-  .diff(noise(110, 0.002))
-  .add(frameShape())
-  .luma(0.1,1)
+frameWave2()
+.repeatX(2)
+.invert()
+.add(o2)
+.add(mainWave())
+.scale(1, 1, 1)
+// .luma(0.01, 0.1)
+// .layer(solid(0.5, 0.1, 1))
+.sub(osc(10, 0.02, 1).scrollY(1.2))
+  // .add(frameShape())
   .out(o1)
 
-frameWave2()
-  .sub(frameCut2()).invert()
+shape(6, 0.05, 0.01)
+  .add(shape(2, 0.05, 0.01))
+  .scale(1, 5, 9)
+  .repeatX(10)
+  .repeatY(10, 20)
+  .scrollX(0.5, -0.001)
+  .scrollY(0.5, 0.01)
+  .rotate(0.5)
+  .modulate(osc(100, 0.02, 0))
+  .modulate(noise(1, 0.02))
+  // .invert()
+  // .kaleid(5).rotate(0.01, 0.05)
+  .scale(2)
   .out(o2)
 
-osc(10, 0.005)
+solid(1, 1, 1)
+  // .modulate(osc(10, 0.02, 5).rotate(1.6)).rotate(1.6)
+  .sub(frameShape())
+  .sub(o2)
+  // .mult(scramble1())
   .out(o3)
 
-render();
+render(o0);
 
 setResolution(1920, 1080)
 
