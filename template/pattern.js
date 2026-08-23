@@ -11,6 +11,43 @@ var hydra = new Hydra({
 // s3.initCam()
 //  let cam = () => src(s3)
 
+// register WebMIDI
+navigator.requestMIDIAccess()
+	.then(onMIDISuccess, onMIDIFailure);
+
+function onMIDISuccess(midiAccess) {
+	console.log(midiAccess);
+	var inputs = midiAccess.inputs;
+	var outputs = midiAccess.outputs;
+	for (var input of midiAccess.inputs.values()){
+		input.onmidimessage = getMIDIMessage;
+	}
+}
+
+function onMIDIFailure() {
+	console.log('Could not access your MIDI devices.');
+}
+
+//create an array to hold cc values
+//load saved values on page load, or fallback to 0.5
+var cc = JSON.parse(localStorage.getItem('hydra_midi_cc')) || Array(128).fill(0.5);
+
+getMIDIMessage = function(midiMessage) {
+	var arr = midiMessage.data;
+	var status = arr[0];
+	var index = arr[1];
+	var rawVal = arr[2];
+
+	// Status 176 (0xB0) is Channel 1 Control Change (176 to 191 covers Channels 1-16)
+	if (status >= 176 && status <= 191) {
+		var val = rawVal / 127.0; // normalization
+		cc[index] = val;
+		console.log(`midi #${index} -> normalized: ${val}`);
+		// Save state locally
+		localStorage.setItem('hydra_midi_cc', JSON.stringify(cc));
+	}
+}
+
 let red = () => src(o0).color(1,0,0)
 let green = () => src(o0).color(0,1,0)
 let blue = () => src(o0).color(0,0,1)

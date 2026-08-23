@@ -82,7 +82,7 @@ noise1()
 
 .out(o1)
 
-render();
+render(o0);
 
 setResolution(1920,1080)
 
